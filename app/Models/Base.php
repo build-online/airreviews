@@ -9,6 +9,11 @@ class Base extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'key',
+        'base_id',
+    ];
+
     /**
      * Get the user that owns the phone.
      */
