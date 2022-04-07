@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
+use App\Models\Base;
 
 class Keys extends Component
 {
@@ -11,8 +12,9 @@ class Keys extends Component
     
     public function mount()
     {
-        $this->key = auth()->user()->base->key;
-        $this->base_id = auth()->user()->base->base_id;
+        $base = Base::firstOrNew(['user_id' => auth()->user()->id]);
+        $this->key = $base->key;
+        $this->base_id = $base->base_id;
     }
 
     protected $rules = [

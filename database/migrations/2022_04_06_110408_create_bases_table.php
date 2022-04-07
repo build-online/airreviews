@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('bases', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
-            $table->string('key');
-            $table->string('base_id');
+            $table->string('key')->nullable();
+            $table->string('base_id')->nullable();
             $table->timestamps();
         });
     }
