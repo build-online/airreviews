@@ -24,16 +24,25 @@ class ReviewController extends Controller
             return view('setuperror');
         }
         // Fetch the user's Airtable Base
+       
         $airtable = new Airtable(array(
             'api_key' => $base->key,
             'base'    => $base->base_id
         ));
-        $clients = $airtable->getContent('Clients');
-
-        dd($clients);
         // Instantiate the user's setup
+        $setup = $airtable->getContent('Setup')->getResponse()['records'][0]->fields;
+
         // Get the specific review from the base and instantiate the variables.
+        $clientparams =  array("filterByFormula" => "AND(RECORD_ID() = '{$record}')");
+        $client = $airtable->getContent('Clients', $clientparams)->getResponse()['records'][0]->fields;
+        
         // Return a view with these variables.
+        return view('form', [
+            'client' => $client,
+            'setup' => $setup,
+            'user' => $user,
+            'base' => $base->base_id
+        ]);
     }
 
     /**
