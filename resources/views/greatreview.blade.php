@@ -9,7 +9,7 @@
     }
     
     </style>
-    <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg text-center">
+    <div class="bg-white overflow-hidden  text-center">
         <div class="max-w-lg mx-auto sm:px-6 lg:px-8 prose">
             <div class="flex justify-center">
                 <img src="{{ $setup->Logo[0]->url }}" alt="" class="h-24 mb-12">
@@ -24,7 +24,7 @@
                 Copy to Clipboard
             </button>
             <p>Then use this button to go to our Google Reviews.</p>
-            <a href="#" class="mt-8 w-full inline-flex justify-center items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-brand hover:bg-gray-800">Leave a Review On Google</a>
+            <a href="{{$setup->Google_Reveiws_URL}}" class="mt-8 w-full inline-flex justify-center items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-brand hover:bg-gray-800">Leave a Review On Google</a>
             <div class="text-center">
             <img src="/google.png" alt="Google Logo" class="inline">
             </div>

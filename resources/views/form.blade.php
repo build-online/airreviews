@@ -9,7 +9,7 @@
     }
     
     </style>
-    <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+    <div class="bg-white overflow-hidden ">
         <div class="max-w-lg mx-auto sm:px-6 lg:px-8">
             <div class="flex justify-center">
                 <img src="{{ $setup->Logo[0]->url }}" alt="" class="h-24 mb-12">
