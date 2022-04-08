@@ -11,15 +11,24 @@
                 <h1> How to use Air Reviews</h1>
                 <h2>Step 1: Create an Airtable Account</h2>
                 <p>You can sign up <a href="https://airtable.com/signup">here.</a></p>
+               
                 <h2>Step 2: Copy the Review Collector base</h2>
                 <p>After you have signed into Airtable, just click <a href="https://airtable.com/shrlR9Vjtg16esQPO">this link</a> and then follow Airtable's instructions.</p>
-                <h2>Step 3: Enter your Airtable API Key and Base ID</h2>
+                 <h2>Step 3: Add your Airreviews ID to the base</h2>
+                Below you'll find your Airreviews ID.  This needs to be added under the "setup" section of your base.
+                <div class="bg-gray-200 p-4">
+                    <p class="text-xl">{{ auth()->user()->id }}</p>
+                </div>
+                 <h2>Step 4: Customize your Airtable base.</h2>
+                    <p>Use the first record in the "Setup" tab to customize the reviews with your logo and text.  You can see a video explaining this here:</p>
+
+                <h2>Step 5: Enter your Airtable API Key and Base ID</h2>
                 <p>You can find the API Key <a href="https://airtable.com/account">here.</a></p>
                 <img src="/api_key.png" alt="Screenshot of where to find the Airtable API key">
                 <p>Finding the Base ID is a little bit trickier.  The easiest way to get it is to go to <a href="https://airtable.com/api">airtable.com/api</a>, select your base and then copy it on the next page.  (See screenshot below)</p>
                 <img src="/base_id.png" alt="Screenshot of where to find the Airtable Base ID">
                 <livewire:keys />
-                <h2>Step 4: Share the review form with your customers.</h2>
+                <h2>Step 6: Share the review form with your customers.</h2>
                 <p>After you've setup your API keys, you really don't need to open this app again.  Everything else happens inside of Airtable.</p>
                 <p>As long as you don't change any of the default fields (you can add as many fields as you like) the app should continue to work as expected.</p>
             </div>
