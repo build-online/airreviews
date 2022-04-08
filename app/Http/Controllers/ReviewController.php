@@ -41,7 +41,7 @@ class ReviewController extends Controller
             'client' => $client,
             'setup' => $setup,
             'user' => $user,
-            'base' => $base->base_id
+            'record' => $record
         ]);
     }
 
@@ -51,13 +51,52 @@ class ReviewController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $user, $record)
     {
+        // Validate the request
+         $validated = $request->validate([
+                'review' => 'required | min:10 | max:255',
+                'star1' => 'required | numeric | min:1',
+                'star2' => 'required | numeric | min:1',
+                'star3' => 'required | numeric | min:1',
+            ]);
         // Fetch the user's Airtable Base
+        $base = Base::where('user_id', $user)->first();
+        $airtable = new Airtable(array(
+            'api_key' => $base->key,
+            'base'    => $base->base_id
+        ));
+
+        // Instantiate the user's setup
+        $setup = $airtable->getContent('Setup')->getResponse()['records'][0]->fields;
+
         // Create a new record in the reviews base
+
+        $new_review_details = array(
+            'Client'        => array($record),
+            'Rating_1'     => intval($request->star1),
+            'Rating_2'     => intval($request->star2),
+            'Rating_3'     => intval($request->star3),
+            'Review' => $request->review
+        );
+        $new_review = $airtable->saveContent("Reviews", $new_review_details);
+        
         // Determine if the review is great
+        $average_reviews = (intval($request->star1) + intval($request->star2) + intval($request->star3))/ 3;
+        
         // If it's great, return a view asking them to post to google
+        if($average_reviews >= 4.45)
+        {
+             return view('greatreview', [
+                'setup' => $setup,
+                'review' => $request->review
+        ]);
+        }
         // If it's not great, return a view that just thanks them for their time and promises to do better.
+        if($average_reviews < 4.45)
+        {
+
+        }
 
     }
 

@@ -22,5 +22,6 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 Route::get('/reviews/{user}/{record}', [ReviewController::class, 'create']);
+Route::post('/reviews/{user}/{record}', [ReviewController::class, 'store']);
 
 require __DIR__.'/auth.php';
