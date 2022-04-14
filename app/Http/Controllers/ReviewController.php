@@ -84,7 +84,7 @@ $new_review = $airtable->saveContent("Reviews", $new_review_details);
 $average_reviews = (intval($request->star1) + intval($request->star2) + intval($request->star3))/ 3;
 
 // If it's great, return a view asking them to post to google
-if($average_reviews >= 4.45)
+if($average_reviews >= 4.5)
 {
 return view('greatreview', [
 'setup' => $setup,
@@ -93,7 +93,7 @@ return view('greatreview', [
 ]);
 }
 // If it's not great, return a view that just thanks them for their time and promises to do better.
-if($average_reviews < 4.45)
+if($average_reviews < 4.5)
 {
 return view('badreview', [
 'setup' => $setup,

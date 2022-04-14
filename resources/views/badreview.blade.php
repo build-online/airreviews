@@ -1,14 +1,12 @@
 <x-guest-layout>
-<div class="py-12">
+<div>
 
     </style>
     <div class="bg-white overflow-hidden text-center">
-        <div class="max-w-lg mx-auto sm:px-6 lg:px-8 prose">
-            <div class="flex justify-center">
-                <img src="{{ $setup->Logo[0]->url }}" alt="" class="h-24 mb-12">
-            </div>
-            <h1>Thank You So Much</h1>
-            <p>We appreciate your feedback.  Our team will look over every one of these reviews and do everything in our power to do better. </p>
+        <div class="max-w-lg mx-auto sm:px-8 lg:px-8 min-h-screen flex flex-col justify-center">
+            <img src="/completed.png" alt="Man viewing review" class="h-80 w-full object-contain">
+            <h1 class="font-bold text-xl mt-10">Your Feedback Means A Lot!</h1>
+            <p class="mt-4 text-gray-600 px-8">Thank you for your submission! We may be in touch to find out how we can serve you better in the future.</p>
         </div>
     </div>
 </div>
