@@ -30,13 +30,20 @@ $setup = $airtable->getContent('Setup')->getResponse()['records'][0]->fields;
 // Get the specific review from the base and instantiate the variables.
 $clientparams =  array("filterByFormula" => "AND(RECORD_ID() = '{$record}')");
 $client = $airtable->getContent('Clients', $clientparams)->getResponse()['records'][0]->fields;
+$before_photo_exists = property_exists($client, "Before_photo" );
+$after_photo_exists = property_exists($client, "After_photo" );
+$logo_exists = property_exists($setup, "Logo" );
+
 
 // Return a view with these variables.
-return view('form', [
+return view('form2', [
 'client' => $client,
 'setup' => $setup,
 'user' => $user,
-'record' => $record
+'record' => $record,
+'before' => $before_photo_exists,
+'after' => $after_photo_exists,
+'logo' => $logo_exists
 ]);
 }
 /**
@@ -62,6 +69,7 @@ $airtable = new Airtable(array(
 ));
 // Instantiate the user's setup
 $setup = $airtable->getContent('Setup')->getResponse()['records'][0]->fields;
+$logo_exists = property_exists($setup, "Logo" );
 // Create a new record in the reviews base
 $new_review_details = array(
 'Client'        => array($record),
@@ -80,14 +88,16 @@ if($average_reviews >= 4.45)
 {
 return view('greatreview', [
 'setup' => $setup,
-'review' => $request->review
+'review' => $request->review,
+'logo' =>$logo_exists
 ]);
 }
 // If it's not great, return a view that just thanks them for their time and promises to do better.
 if($average_reviews < 4.45)
 {
 return view('badreview', [
-'setup' => $setup
+'setup' => $setup,
+'logo' => $logo_exists
 ]);
 }
 }

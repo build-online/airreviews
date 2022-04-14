@@ -7,22 +7,30 @@
     button.bg-brand {
     background-color: var(--color);
     }
-    
+    .brand {
+        color: var(--color);
+    }
     </style>
-    <div class="bg-white overflow-hidden ">
+    <div class="bg-white overflow-hidden px-6">
         <div class="max-w-lg mx-auto sm:px-6 lg:px-8">
             <div class="flex justify-center">
-                <img src="{{ $setup->Logo[0]->url }}" alt="" class="h-24 mb-12">
+                @if($logo)
+                <img src="{{ $setup->Logo[0]->url }}" alt="" class="h-48 w-48 object-contain mb-12">
+                @else
+                <h1 class="text-2xl font-bold brand mb-12">{{ $setup->Business_Name }}</h1>
+                @endif
             </div>
+            @if($before || $after )
             <div class="flex justify-center flex-row mb-6">
-                <div class="w-48 mr-6 text-center">
-                    <img src="{{ $client->Before_photo[0]->url }}" alt="" class="w-48 h-48 object-cover mb-2">
-                    <p>Before</p>
-                </div>
-                <div class="w-48 text-center">
-                    <img src="{{ $client->After_photo[0]->url }}" alt="" class="w-48 h-48 object-cover mb-2">
-                    <p>After</p>
-                </div>
+                @if($before )
+                    <img src="{{ $client->Before_photo[0]->url }}" alt="" class="@if($after) w-48 h-48 mr-6 @else w-full h-64 @endif object-cover">
+                 
+                @endif
+                @if($after)
+
+                    <img src="{{ $client->After_photo[0]->url }}" alt="" class="@if($before) w-48 h-48 @else w-full h-64  @endif object-cover ">
+                @endif
+            @endif
             </div>
             <div class="p-6 bg-white border-b border-gray-200 prose " >
                 <h2>{{$client->Client_Name}} {{$setup->Heading}}</h2>
